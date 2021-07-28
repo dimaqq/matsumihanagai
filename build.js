@@ -12,6 +12,8 @@ esbuild
     bundle: true,
     plugins: [flow(/\.jsx?$/)],
     target: "es2021",
+    jsxFactory: "h",
+    jsxFragment: "Fragment",
   })
   .catch(() => process.exit(1))
 
