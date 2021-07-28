@@ -1,6 +1,8 @@
+// @flow
 import React from "react";
+import type {Node} from "react";
 
-const App = () =>
+const App = (): Node =>
     <div className="App">
       <header className="App-header">
         <p>
