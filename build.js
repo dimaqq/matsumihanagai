@@ -1,13 +1,19 @@
-const esbuild = require('esbuild')
-const flow = require('esbuild-plugin-flow')
+// @flow
+import esbuild from "esbuild";
+import flow from "esbuild-plugin-flow";
+import {copyFile, mkdir} from "fs/promises";
+
+await mkdir("dist");
 
 esbuild
   .build({
-    entryPoints: ['src/index.js'],
-    outfile: 'dist/bundle.js',
+    entryPoints: ["src/index.js"],
+    outfile: "dist/bundle.js",
     bundle: true,
-    //plugins: [flow(/\.flow\.jsx?$/)],
     plugins: [flow(/\.jsx?$/)],
     target: "es2021",
   })
   .catch(() => process.exit(1))
+
+await copyFile("src/index.html", "dist/index.html");
+await copyFile("src/favicon.ico", "dist/favicon.ico");
