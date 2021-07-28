@@ -1,8 +1,8 @@
 // @flow
-import React from 'react';
+import React from "react";
 import type {Node} from "react";
 import styled, {createGlobalStyle} from "styled-components";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 
 const App = (): Node =>
     <Box>
@@ -28,15 +28,6 @@ const Box = styled.div`
 `;
 
 const GlobalStyle = createGlobalStyle`
-body[data-theme='light'] {
-  --colors-primary: deeppink;
-  --colors-background: white;
-}
-body[data-theme='dark'] {
-  --colors-primary: lightpink;
-  --colors-background: black;
-}
-
 :root {
   --back: #fff;
   --backish: #aaa;
@@ -65,5 +56,5 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
