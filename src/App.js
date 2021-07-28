@@ -1,6 +1,6 @@
+import React from "react";
 
-function App() {
-  return (
+const App = () =>
     <div className="App">
       <header className="App-header">
         <p>
@@ -15,8 +15,6 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
-  );
-}
+    </div>;
 
 export default App;

@@ -3,31 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/preset-react": "^7.14.5",
-    "esbuild": "^0.12.16",
-    "esbuild-plugin-flow": "^0.3.2",
-    "flow-bin": "^0.156.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "styled-components": "^5.3.0"
   },
   "scripts": {
-    "start": "parcel serve src/index.html",
+    "lint": "eslint src",
+    "start": "serve dist/",
     "build": "node build.js",
     "prebuild": "rm -rf dist/",
     "flow": "flow"
   },
   "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
+    ],
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "plugin:flowtype/recommended",
+      "plugin:react/recommended"
     ]
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/plugin-transform-react-jsx": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^12.0.0",
-    "@testing-library/user-event": "^13.2.1"
+    "@testing-library/user-event": "^13.2.1",
+    "babel-eslint": "^10.1.0",
+    "esbuild": "^0.12.16",
+    "esbuild-plugin-flow": "^0.3.2",
+    "eslint": "^7.31.0",
+    "eslint-plugin-flowtype": "^5.8.2",
+    "eslint-plugin-react": "^7.24.0",
+    "flow-bin": "^0.156.0",
+    "serve": "^12.0.0"
   }
 }
