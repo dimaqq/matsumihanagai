@@ -2,6 +2,7 @@
 import "preact/debug";
 import {h, Fragment, render} from "preact";
 import styled, {createGlobalStyle} from "styled-components";
+import FontFaceObserver from "fontfaceobserver";
 
 const App = () =>
     <Box>
@@ -21,14 +22,11 @@ const App = () =>
       </header>
     </Box>;
 
-// TODO
-// figure out how to marry styled-components with preact
-// figure out of flow can work with preact
-// try linaria instead of styled-compo
-
 const Box = styled.div`
   border: 5px solid var(--red);
   padding: 10px;
+  font-family: Tangerine;
+  font-weight: 400;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -56,4 +54,14 @@ body {
 }
 `;
 
-render(<App />, document.body);
+
+// evanw/esbuild#253
+const main = async () => {
+  const font = new FontFaceObserver("Tangerine", {weight: 400});
+  console.log("start", new Date().toISOString());
+  await font;
+  console.log("done", new Date().toISOString());
+  render(<App />, document.body);
+};
+
+main();
