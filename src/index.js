@@ -1,10 +1,9 @@
 // @flow
 import "preact/debug";
 import {h, Fragment, render} from "preact";
-//import type {Node} from "preact";
 import styled, {createGlobalStyle} from "styled-components";
 
-const App = (): Node =>
+const App = () =>
     <Box>
       <GlobalStyle/>
       <header className="App-header">
