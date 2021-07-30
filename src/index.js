@@ -45,7 +45,7 @@ const y = "a";
 const z = x + y;
 
 const Box = styled.div`
-  border: 5px solid var(--red);
+  border: 1px solid var(--red);
   padding: 10px;
 `;
 
@@ -54,6 +54,7 @@ const GlobalStyle = createGlobalStyle`
   --back: #fff;
   --backish: #aaa;
   --text: #222;
+  --gray: #888;
 
   --red: #d00;
 }
