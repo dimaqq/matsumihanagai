@@ -2,13 +2,16 @@
 import esbuild from "esbuild";
 import flow from "esbuild-plugin-flow";
 import alias from "esbuild-plugin-alias";
-import {copyFile, mkdir} from "fs/promises";
+import {copyFileSync} from "fs";
+
+const prod = process.env.NODE_ENV === 'production';
 
 esbuild
   .build({
     entryPoints: ["src/index.js"],
     outfile: "dist/bundle.js",
     bundle: true,
+    minify: prod,
     plugins: [
       alias({react: `${ process.cwd() }/node_modules/preact/compat/dist/compat.mjs`}),
       flow(/\.jsx?$/),
@@ -20,5 +23,5 @@ esbuild
   .catch(() => process.exit(1))
 
 // facebook/flow#7710 🙏
-await copyFile("src/index.html", "dist/index.html");
-await copyFile("src/favicon.ico", "dist/favicon.ico");
+copyFileSync("src/index.html", "dist/index.html");
+copyFileSync("src/favicon.ico", "dist/favicon.ico");

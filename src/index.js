@@ -3,7 +3,6 @@ import "preact/debug";
 import {h, Fragment, render} from "preact";
 import {useState, useEffect} from "preact/hooks";
 import styled, {createGlobalStyle} from "styled-components";
-import FontFaceObserver from "fontfaceobserver";
 
 const App = () => {
   return <>
@@ -24,32 +23,26 @@ const App = () => {
         </a>
       </header>
     </Box>
-  <YBox>
+  <Box>
     Edit blah blah blah...
     なみすけは、東京都杉並区の公式マスコットキャラクター。
-  </YBox>
-  <ZBox>
+  </Box>
+  <Box>
     Edit blah blah blah...
     なみすけは、東京都杉並区の公式マスコットキャラクター。
-  </ZBox>
-  <div>
+  </Box>
+    <div>
     Edit blah blah blah...
     なみすけは、東京都杉並区の公式マスコットキャラクター。
   </div>
 </>;
 };
 
+const x = 42;
+const y = "a";
+const z = x + y;
+
 const Box = styled.div`
-  border: 5px solid var(--red);
-  padding: 10px;
-`;
-
-const YBox = styled.div`
-  border: 5px solid var(--red);
-  padding: 10px;
-`;
-
-const ZBox = styled.div`
   border: 5px solid var(--red);
   padding: 10px;
 `;
