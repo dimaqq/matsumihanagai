@@ -3,6 +3,7 @@ import "preact/debug";
 import {h, Fragment, render} from "preact";
 import {useState, useEffect} from "preact/hooks";
 import styled, {createGlobalStyle} from "styled-components";
+import {Months} from "./cal";
 
 const App = () => {
   return <>
@@ -35,6 +36,7 @@ const App = () => {
     Edit blah blah blah...
     なみすけは、東京都杉並区の公式マスコットキャラクター。
   </div>
+  <Months/>
 </>;
 };
 
