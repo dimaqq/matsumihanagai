@@ -14,14 +14,6 @@ const App = () => {
           Edit blah blah blah...
           なみすけは、東京都杉並区の公式マスコットキャラクター。
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </Box>
   <Box>

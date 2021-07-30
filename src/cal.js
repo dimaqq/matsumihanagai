@@ -44,6 +44,7 @@ const Day = styled.div`
 `;
 
 const MonthName = styled.div`
+  grid-column: 1/8;
   text-align: center;
   font-weight: 600;
   background: var(--backish);
