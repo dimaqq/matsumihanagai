@@ -11,7 +11,7 @@
     "lint": "eslint src",
     "start": "serve dist/",
     "build": "node build.js",
-    "prebuild": "rm -rf dist/",
+    "prebuild": "rm -rf dist/; mkdir dist",
     "flow": "flow"
   },
   "eslintConfig": {
@@ -37,6 +37,7 @@
     "@testing-library/user-event": "^13.2.1",
     "babel-eslint": "^10.1.0",
     "esbuild": "^0.12.16",
+    "esbuild-plugin-alias": "^0.1.2",
     "esbuild-plugin-flow": "^0.3.2",
     "eslint": "^7.31.0",
     "eslint-plugin-flowtype": "^5.8.2",

@@ -2,10 +2,11 @@
 import "preact/debug";
 import {h, Fragment, render} from "preact";
 //import type {Node} from "preact";
-//import styled, {createGlobalStyle} from "styled-components";
+import styled, {createGlobalStyle} from "styled-components";
 
 const App = (): Node =>
-    <div>
+    <Box>
+      <GlobalStyle/>
       <header className="App-header">
         <p>
           Edit blah blah blah...
@@ -19,14 +20,13 @@ const App = (): Node =>
           Learn React
         </a>
       </header>
-    </div>;
+    </Box>;
 
 // TODO
 // figure out how to marry styled-components with preact
 // figure out of flow can work with preact
 // try linaria instead of styled-compo
 
-/*
 const Box = styled.div`
   border: 5px solid var(--red);
   padding: 10px;
@@ -56,6 +56,5 @@ body {
   background-color: var(--back);
 }
 `;
-*/
 
 render(<App />, document.body);
