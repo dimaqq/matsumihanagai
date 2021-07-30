@@ -1,8 +1,8 @@
 // @flow
-import React from "react";
-import type {Node} from "react";
+import "preact/debug";
+import {h, Fragment, render} from "preact";
+//import type {Node} from "preact";
 import styled, {createGlobalStyle} from "styled-components";
-import ReactDOM from "react-dom";
 
 const App = (): Node =>
     <Box>
@@ -21,6 +21,11 @@ const App = (): Node =>
         </a>
       </header>
     </Box>;
+
+// TODO
+// figure out how to marry styled-components with preact
+// figure out of flow can work with preact
+// try linaria instead of styled-compo
 
 const Box = styled.div`
   border: 5px solid var(--red);
@@ -52,9 +57,4 @@ body {
 }
 `;
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+render(<App />, document.body);
