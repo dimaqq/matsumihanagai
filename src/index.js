@@ -1,15 +1,18 @@
 // @flow
 import "preact/debug";
 import {h, Fragment, render} from "preact";
+import {useState, useEffect} from "preact/hooks";
 import styled, {createGlobalStyle} from "styled-components";
 import FontFaceObserver from "fontfaceobserver";
 
-const App = () =>
+const App = () => {
+  return <>
     <Box>
       <GlobalStyle/>
       <header className="App-header">
         <p>
           Edit blah blah blah...
+          なみすけは、東京都杉並区の公式マスコットキャラクター。
         </p>
         <a
           className="App-link"
@@ -20,13 +23,35 @@ const App = () =>
           Learn React
         </a>
       </header>
-    </Box>;
+    </Box>
+  <YBox>
+    Edit blah blah blah...
+    なみすけは、東京都杉並区の公式マスコットキャラクター。
+  </YBox>
+  <ZBox>
+    Edit blah blah blah...
+    なみすけは、東京都杉並区の公式マスコットキャラクター。
+  </ZBox>
+  <div>
+    Edit blah blah blah...
+    なみすけは、東京都杉並区の公式マスコットキャラクター。
+  </div>
+</>;
+};
 
 const Box = styled.div`
   border: 5px solid var(--red);
   padding: 10px;
-  font-family: Tangerine;
-  font-weight: 400;
+`;
+
+const YBox = styled.div`
+  border: 5px solid var(--red);
+  padding: 10px;
+`;
+
+const ZBox = styled.div`
+  border: 5px solid var(--red);
+  padding: 10px;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -51,17 +76,12 @@ const GlobalStyle = createGlobalStyle`
 body {
   color: var(--text);
   background-color: var(--back);
+  font-family: 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', '游ゴシック',
+    '游ゴシック体', YuGothic, 'Yu Gothic', 'メイリオ', Meiryo, 'ＭＳ ゴシック',
+    'MS Gothic', HiraKakuProN-W3, 'TakaoExゴシック', TakaoExGothic, 'MotoyaLCedar',
+    'Droid Sans Japanese', sans-serif;
+  font-weight: 400;
 }
 `;
 
-
-// evanw/esbuild#253
-const main = async () => {
-  const font = new FontFaceObserver("Tangerine", {weight: 400});
-  console.log("start", new Date().toISOString());
-  await font;
-  console.log("done", new Date().toISOString());
-  render(<App />, document.body);
-};
-
-main();
+render(<App />, document.body);
