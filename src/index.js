@@ -51,6 +51,9 @@ ${ reset }
   --gray: #888;
 
   --red: #d00;
+  --redish: #d88;
+  --green: #0d0;
+  --greenish: #8d8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -60,6 +63,9 @@ ${ reset }
     --text: #aaa;
 
     --red: #f66;
+    --redish: #722;
+    --green: #272;
+    --greenish: #161;
   }
 }
 

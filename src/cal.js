@@ -19,7 +19,7 @@ const Month = ({name, lead, len}) => <Grid>
     <MonthName>{name}</MonthName>
     {labels().map(v => <DayName>{v}</DayName>)}
     {[...new Array(lead)].map(() => <Day blank/>)}
-    {[...new Array(len)].map((_, i) => <Day>{i}</Day>)}
+    {[...new Array(len)].map((_, i) => <Day mo={name} d={i}/>)}
   </Grid>;
 
 const labels = () => [t`Sun`, t`Mon`, t`Tue`, t`Wed`, t`Thu`, t`Fri`, t`Sat`];
@@ -38,8 +38,32 @@ const Grid = styled.div`
   gap: 3px;
 `;
 
-const Day = styled.div`
-  border: 1px solid var(${ props => props.blank?"--gray":"--red" });
+const Day = ({mo, d}) => {
+  const date = `${ mo }-${ (1e2 + d + "").slice(-2) }`;
+  return <Cell free={d % 2}>
+    <DayNo>{ d }</DayNo>
+  </Cell>;
+};
+
+const DayNo = styled.div`
+  flex: none;
+  border: 1px dashed firebrick;
+  font-size: 20px;
+`;
+
+const Cell = styled.div`
+  border: 3px solid var(${
+    props => props.blank?
+      "--gray":
+      props.free?
+      "--greenish":
+        "--redish" });
+  background-color: color-mix(in srgb, var(${
+    props => props.blank?
+      "--gray":
+        props.free?
+        "--greenish":
+          "--redish" }) 20%, var(--back));
 `;
 
 const MonthName = styled.div`
