@@ -11,7 +11,7 @@ const MONTHS = [
   {name: "2021-12", lead: 3, len: 31},
 ];
 
-export const Months = (): React$Element<any> => <>
+export const Calendar = (): React$Element<any> => <>
   {MONTHS.map(v => <Month {...v}/>)}
 </>;
 
@@ -22,7 +22,6 @@ const Month = ({name, lead, len}) => <Grid>
     {[...new Array(len)].map((_, i) => <Day>{i}</Day>)}
   </Grid>;
 
-// FIXME make translatable
 const labels = () => [t`Sun`, t`Mon`, t`Tue`, t`Wed`, t`Thu`, t`Fri`, t`Sat`];
 
 const Box = styled.div`

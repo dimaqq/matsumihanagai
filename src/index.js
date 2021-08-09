@@ -3,33 +3,28 @@ import "preact/debug";
 import {h, Fragment, render} from "preact";
 import {useState, useEffect} from "preact/hooks";
 import styled, {createGlobalStyle} from "styled-components";
-import {Months} from "./cal";
+import reset from "minireset.css";
+import {Calendar} from "./cal";
+import {set_language} from "./t";
+
+
+// FIXME auto-detect; localStorage
+
+set_language("dg");
 
 const App = () => {
   return <>
+    <GlobalStyle/>
     <Box>
-      <GlobalStyle/>
-      <header className="App-header">
         <p>
-          Edit blah blah blah...
+          A paragraph of text in Latin script.
           なみすけは、東京都杉並区の公式マスコットキャラクター。
         </p>
-      </header>
     </Box>
-  <Box>
-    Edit blah blah blah...
-    なみすけは、東京都杉並区の公式マスコットキャラクター。
-  </Box>
-  <Box>
-    Edit blah blah blah...
-    なみすけは、東京都杉並区の公式マスコットキャラクター。
-  </Box>
-    <div>
-    Edit blah blah blah...
-    なみすけは、東京都杉並区の公式マスコットキャラクター。
-  </div>
-  <Months/>
-</>;
+    <Center>
+      <Calendar/>
+    </Center>
+  </>;
 };
 
 const x = 42;
@@ -41,7 +36,14 @@ const Box = styled.div`
   padding: 10px;
 `;
 
+const Center = styled.div`
+  width: 718px;
+  margin: auto;
+`;
+
 const GlobalStyle = createGlobalStyle`
+${ reset }
+
 :root {
   --back: #fff;
   --backish: #aaa;
@@ -62,6 +64,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
+  margin: 0;
   color: var(--text);
   background-color: var(--back);
   font-family: 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', '游ゴシック',

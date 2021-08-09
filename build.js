@@ -19,6 +19,7 @@ esbuild
     target: "es2021",
     jsxFactory: "h",
     jsxFragment: "Fragment",
+    loader: {".css": "text"},
   })
   .catch(() => process.exit(1))
 
