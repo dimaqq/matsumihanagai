@@ -49,6 +49,7 @@ ${ reset }
   --backish: #aaa;
   --text: #222;
   --gray: #888;
+  --grayish: #aaa;
 
   --red: #d00;
   --redish: #d88;
@@ -61,6 +62,7 @@ ${ reset }
     --back: #000;;
     --backish: #222;
     --text: #aaa;
+    --grayish: #444;
 
     --red: #f66;
     --redish: #722;

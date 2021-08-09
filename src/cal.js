@@ -38,7 +38,9 @@ const Grid = styled.div`
   gap: 3px;
 `;
 
-const Day = ({mo, d}) => {
+const Day = ({mo, d, blank}) => {
+  if (blank) return <Cell blank/>;
+
   const date = `${ mo }-${ (1e2 + d + "").slice(-2) }`;
   return <Cell free={d % 2}>
     <DayNo>{ d }</DayNo>
@@ -46,21 +48,25 @@ const Day = ({mo, d}) => {
 };
 
 const DayNo = styled.div`
-  flex: none;
-  border: 1px dashed firebrick;
+  position: relative;
+  width: 2em;
+  padding-left: .25em;
+  top: 0px;
+  left: 0px;
+  /*border: 1px dashed firebrick;*/
   font-size: 20px;
 `;
 
 const Cell = styled.div`
   border: 3px solid var(${
     props => props.blank?
-      "--gray":
+      "--grayish":
       props.free?
       "--greenish":
         "--redish" });
   background-color: color-mix(in srgb, var(${
     props => props.blank?
-      "--gray":
+      "--grayish":
         props.free?
         "--greenish":
           "--redish" }) 20%, var(--back));
