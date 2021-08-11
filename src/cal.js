@@ -17,7 +17,9 @@ const MONTHS = [
 export const Calendar = (): React$Element<any> => {
   const prefix = "/data";
   const path = usePath();
-  console.log("navi", path);
+  const {city} = path.match(/^[/](?<city>[^/]+)[/]?/)?.groups ?? {};
+
+  console.debug("navi", {path, city});
 
   return <>
     {MONTHS.map(v => <Month {...v}/>)}
