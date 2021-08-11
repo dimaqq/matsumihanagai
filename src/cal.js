@@ -1,7 +1,10 @@
 // @flow
 import {h, Fragment} from "preact";
+import {useState} from "preact/hooks";
 import styled from "styled-components";
 import {t} from "./t";
+import {usePath} from "./hooks";
+import {init_state, push_state, replace_state, pop_state} from "./history";
 
 const MONTHS = [
   {name: "2021-08", lead: 0, len: 31},
@@ -11,9 +14,16 @@ const MONTHS = [
   {name: "2021-12", lead: 3, len: 31},
 ];
 
-export const Calendar = (): React$Element<any> => <>
-  {MONTHS.map(v => <Month {...v}/>)}
-</>;
+export const Calendar = (): React$Element<any> => {
+  const prefix = "/data";
+  const path = usePath();
+  console.log("navi", path);
+
+  return <>
+    {MONTHS.map(v => <Month {...v}/>)}
+    <button onClick={() => push_state("a") }>X</button>
+  </>;
+};
 
 const Month = ({name, lead, len}) => <Grid>
     <MonthName>{name}</MonthName>
@@ -38,12 +48,18 @@ const Grid = styled.div`
   gap: 3px;
 `;
 
-const Day = ({mo, d, blank}) => {
+const Day = ({mo, d, blank}: {mo?: string, d?: number, blank?: bool}) => {
+  const [loading, load] = useState(false);
+
   if (blank) return <Cell blank/>;
+  if (mo === undefined || d === undefined) throw new Error("argh");
 
   const date = `${ mo }-${ (1e2 + d + "").slice(-2) }`;
-  return <Cell free={d % 2}>
+  const free = d % 2; // FIXME
+
+  return <Cell free={free}>
     <DayNo>{ d }</DayNo>
+    {loading?"L":"R"}
   </Cell>;
 };
 
@@ -55,6 +71,9 @@ const DayNo = styled.div`
   left: 0px;
   /*border: 1px dashed firebrick;*/
   font-size: 20px;
+`;
+
+const Refresh = styled.button`
 `;
 
 const Cell = styled.div`

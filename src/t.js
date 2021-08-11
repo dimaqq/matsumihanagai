@@ -16,7 +16,7 @@ const dg = s => `${ s } ${ T[s] }`;
 
 let tr = en;
 
-export const set_language = name => {
+export const set_language = (name: string) => {
   if (name === "en") tr = en;
   else if (name === "ja") tr = ja;
   else tr = dg;
