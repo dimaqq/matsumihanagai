@@ -1,10 +1,11 @@
 // @flow
 import {h, Fragment} from "preact";
 import {useState} from "preact/hooks";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {t} from "./t";
 import {usePath} from "./hooks";
 import {init_state, push_state, replace_state, pop_state} from "./history";
+import {DATA} from "./data";
 
 const MONTHS = [
   {name: "2021-08", lead: 0, len: 31},
@@ -57,11 +58,14 @@ const Day = ({mo, d, blank}: {mo?: string, d?: number, blank?: bool}) => {
   if (mo === undefined || d === undefined) throw new Error("argh");
 
   const date = `${ mo }-${ (1e2 + d + "").slice(-2) }`;
-  const free = d % 2; // FIXME
+  const path = `/data/42/${ date }`;
+  const datum = DATA[path] ?? {};
+  const free = datum.use < datum.tot;
 
   return <Cell free={free}>
     <DayNo>{ d }</DayNo>
     {loading?"L":"R"}
+    <Anidiv>xxx</Anidiv>
   </Cell>;
 };
 
@@ -104,4 +108,18 @@ const DayName = styled.div`
   text-align: center;
   background: var(--backish);
   border: 1px solid var(--gray);
+`;
+
+const update = keyframes`
+  0% { background-position: 100% 50% }
+  50% { background-position: 50% 50% }
+  100% { background-position: 0% 50% }
+}
+`;
+
+const Anidiv = styled.div`
+    background: linear-gradient(90deg, #081462, #081462, #081462, #086229, #081462);
+    background-size: 1000% 1000%;
+
+    animation: ${ update } 3s linear;
 `;
