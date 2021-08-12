@@ -11,7 +11,7 @@
   },
   "scripts": {
     "lint": "eslint src",
-    "start": "serve dist/",
+    "start": "serve -s dist/",
     "build": "node build.js",
     "prebuild": "rm -rf dist/; mkdir dist",
     "flow": "flow"

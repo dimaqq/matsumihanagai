@@ -5,18 +5,14 @@ import {useState, useEffect} from "preact/hooks";
 import styled, {createGlobalStyle} from "styled-components";
 import reset from "minireset.css";
 import {Calendar} from "./cal";
-import {set_language} from "./t";
-
-
-// FIXME auto-detect; localStorage
-
-set_language("dg");
+import {Switcher} from "./loc";
 
 const App = () => {
   return <>
     <GlobalStyle/>
     <Box>
         <p>
+          <Switcher/>
           A paragraph of text in Latin script.
           なみすけは、東京都杉並区の公式マスコットキャラクター。
         </p>
