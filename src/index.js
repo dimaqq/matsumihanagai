@@ -48,7 +48,7 @@ ${ reset }
   --grayish: #aaa;
 
   --red: #d00;
-  --redish: #d88;
+  --reddish: #d88;
   --green: #0d0;
   --greenish: #8d8;
 }
@@ -61,7 +61,7 @@ ${ reset }
     --grayish: #444;
 
     --red: #f66;
-    --redish: #722;
+    --reddish: #722;
     --green: #272;
     --greenish: #161;
   }

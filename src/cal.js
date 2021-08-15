@@ -20,7 +20,7 @@ export const Calendar = (): React$Element<any> => {
   const path = usePath();
   const {city} = path.match(/^[/](?<city>[^/]+)[/]?/)?.groups ?? {};
 
-  console.debug("navi", {path, city});
+  console.debug("navigation", {path, city});
 
   return <>
     {MONTHS.map(v => <Month {...v}/>)}
@@ -55,7 +55,7 @@ const Day = ({mo, d, blank}: {mo?: string, d?: number, blank?: bool}) => {
   const [loading, load] = useState(false);
 
   if (blank) return <Cell blank/>;
-  if (mo === undefined || d === undefined) throw new Error("argh");
+  if (mo === undefined || d === undefined) throw new Error("Aargh!");
 
   const date = `${ mo }-${ (1e2 + d + "").slice(-2) }`;
   const path = `/data/42/${ date }`;
@@ -88,13 +88,13 @@ const Cell = styled.div`
       "--grayish":
       props.free?
       "--greenish":
-        "--redish" });
+        "--reddish" });
   background-color: color-mix(in srgb, var(${
     props => props.blank?
       "--grayish":
         props.free?
         "--greenish":
-          "--redish" }) 20%, var(--back));
+          "--reddish" }) 20%, var(--back));
 `;
 
 const MonthName = styled.div`
