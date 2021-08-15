@@ -3,7 +3,7 @@ import {h, Fragment} from "preact";
 import {useState} from "preact/hooks";
 import styled, {keyframes} from "styled-components";
 import {t} from "./t";
-import {usePath} from "./hooks";
+import {usePath, useCallback} from "./hooks";
 import {init_state, push_state, replace_state, pop_state} from "./history";
 import {DATA} from "./data";
 
@@ -61,6 +61,9 @@ const Day = ({mo, d, blank}: {mo?: string, d?: number, blank?: bool}) => {
   const path = `/data/42/${ date }`;
   const datum = DATA[path] ?? {};
   const free = datum.use < datum.tot;
+
+  const updated = datum => console.log(datum);
+  useCallback(path, updated);
 
   return <Cell free={free}>
     <DayNo>{ d }</DayNo>

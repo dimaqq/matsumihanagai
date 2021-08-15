@@ -1,11 +1,12 @@
 // @flow
+import {useEffect} from "preact/hooks";
 
 const time = () => Date.now() / 1000;
 
 const BASE = time() - 3000;
 
-const FULL = {tot: 42, use: 42, mt: BASE, lf: BASE-9000};
-const FREE = {...FULL, use: 41};
+export const FULL = {tot: 42, use: 42, mt: BASE, lf: BASE-9000};
+export const FREE = {...FULL, use: 41};
 
 export const DATA: {[string]: typeof FREE} = {
 };
@@ -24,3 +25,5 @@ DATA["/data/42/2021-09-21"] = FREE;
 DATA["/data/42/2021-09-22"] = FREE;
 
 DATA["/data/42/2021-10-08"] = FREE;
+
+export const callbacks: {[string]: (datum: (typeof FREE)) => void} = {};
