@@ -2,6 +2,7 @@
 import {useEffect} from "preact/hooks";
 
 const time = () => Date.now() / 1000;
+const sleep = seconds => new Promise(r => setTimeout(r, seconds * 1000));
 
 const BASE = time() - 3000;
 
@@ -27,3 +28,14 @@ DATA["/data/42/2021-09-22"] = FREE;
 DATA["/data/42/2021-10-08"] = FREE;
 
 export const callbacks: {[string]: (datum: (typeof FREE)) => void} = {};
+
+const fake_update = async () => {
+  for (;;)
+    for (const path of Object.keys(DATA)) {
+      await sleep(1);
+      const cb = callbacks[path];
+      if (cb) cb(DATA[path]);
+    }
+};
+
+fake_update();

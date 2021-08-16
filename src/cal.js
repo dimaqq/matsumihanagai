@@ -53,6 +53,7 @@ const Grid = styled.div`
 
 const Day = ({mo, d, blank}: {mo?: string, d?: number, blank?: bool}) => {
   const [loading, load] = useState(false);
+  const [up, setup] = useState(false);
 
   if (blank) return <Cell blank/>;
   if (mo === undefined || d === undefined) throw new Error("Aargh!");
@@ -62,13 +63,16 @@ const Day = ({mo, d, blank}: {mo?: string, d?: number, blank?: bool}) => {
   const datum = DATA[path] ?? {};
   const free = datum.use < datum.tot;
 
-  const updated = datum => console.log(datum);
+  const updated = datum => {
+    setup(!up);
+    console.log(datum);
+  };
   useCallback(path, updated);
 
-  return <Cell free={free}>
+  return <Cell free={free} up={up}>
     <DayNo>{ d }</DayNo>
     {loading?"L":"R"}
-    <Anidiv>xxx</Anidiv>
+    <div>xxx</div>
   </Cell>;
 };
 
@@ -98,6 +102,28 @@ const Cell = styled.div`
         props.free?
         "--greenish":
           "--reddish" }) 20%, var(--back));
+
+  xbackground-image: linear-gradient(to right, transparent, gold, transparent);
+  background-image: linear-gradient(to right,
+    transparent,
+    #00000004, #0000, #fff8, #fff8, #0000, #00000004,
+    transparent);
+  background-blend-mode: saturation;
+  background-size: 50% 1px;
+  background-repeat: repeat-y;
+  background-position: -100% 50%;
+  animation: ${ props => props.up?update1:update2 } .3s linear;
+`;
+
+const Test = styled.div`
+  background-image: linear-gradient(to right,
+    transparent,
+    #00000004, #0000, #fff8, #fff8, #0000, #00000004,
+    transparent);
+  background-blend-mode: ${ props => props.mode };
+  background-size: 50% 1px;
+  background-repeat: repeat-y;
+  background-position: 5% 50%;
 `;
 
 const MonthName = styled.div`
@@ -113,16 +139,17 @@ const DayName = styled.div`
   border: 1px solid var(--gray);
 `;
 
-const update = keyframes`
-  0% { background-position: 100% 50% }
+const update1 = keyframes`
+  0% { background-position: -50% 50% }
   50% { background-position: 50% 50% }
-  100% { background-position: 0% 50% }
+  100% { background-position: 150% 50% }
 }
 `;
 
-const Anidiv = styled.div`
-    background: linear-gradient(90deg, #081462, #081462, #081462, #086229, #081462);
-    background-size: 1000% 1000%;
-
-    animation: ${ update } 3s linear;
+// must be a tad different from the above to trigger animation
+const update2 = keyframes`
+  0% { background-position: -50% 50% }
+  50% { background-position: 51% 50% }
+  100% { background-position: 150% 50% }
+}
 `;
