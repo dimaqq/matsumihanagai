@@ -22,6 +22,7 @@ jobs:
     - run: yarn install --frozen-lockfile
     - run: mkdir dist
     - run: node build.js
+    - run: ls -halt dist/
     - name: Add aws
       uses: aws-actions/configure-aws-credentials@v1
       with:
