@@ -1,6 +1,6 @@
 // @flow
 
-const T = {
+export const T: {[string]: string} = {
   Mon: "月",
   Tue: "火",
   Wed: "水",

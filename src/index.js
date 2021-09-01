@@ -6,8 +6,12 @@ import styled, {createGlobalStyle} from "styled-components";
 import reset from "minireset.css";
 import {Calendar} from "./cal";
 import {Switcher} from "./loc";
+import {useWardCode, useWardName} from "./hooks";
+import {SiteMap} from "./sitemap";
 
 const App = () => {
+  const wardName = useWardName();
+
   return <>
     <GlobalStyle/>
     <Box>
@@ -18,14 +22,13 @@ const App = () => {
         </p>
     </Box>
     <Center>
-      <Calendar/>
+      { wardName? <Calendar/>: <SiteMap/>}
     </Center>
   </>;
 };
 
-const x = 42;
-const y = "a";
-const z = x + y;
+const Title = () => {
+};
 
 const Box = styled.div`
   border: 1px solid var(--red);
